@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../../routes/app_routes.dart';
+import '../../../app/routes/app_pages.dart';
 
 class LoginController extends GetxController {
   final RxString selectedRole = 'QA Manager'.obs;

@@ -1,23 +1,28 @@
 import 'package:get/get.dart';
+import '../../../../routes/app_pages.dart';
 
 class DashboardController extends GetxController {
-  //TODO: Implement DashboardController
+  final RxString selectedFacility = 'Gudang Cikarang Plant 01'.obs;
+  final RxString cameraStatusPill = '8/8 CCTVs Online'.obs;
+  final RxDouble haccpScore = 98.5.obs;
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  void openCameraSetup() {
+    Get.toNamed(Routes.CAMERA_SETUP);
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  void openLiveFeed() {
+    Get.toNamed(Routes.LIVE_FEED);
   }
 
-  @override
-  void onClose() {
-    super.onClose();
+  void openIncidentDetail() {
+    Get.toNamed(Routes.INCIDENT_DETAIL);
   }
 
-  void increment() => count.value++;
+  void openExportHaccp() {
+    Get.toNamed(Routes.EXPORT_HACCP);
+  }
+
+  void openProfile() {
+    Get.toNamed(Routes.PROFILE);
+  }
 }

@@ -1,23 +1,9 @@
 import 'package:get/get.dart';
 
 class LiveFeedController extends GetxController {
-  //TODO: Implement LiveFeedController
+  final RxString fps = '30'.obs;
+  final RxString latency = '42ms'.obs;
+  final RxString model = 'YOLOv11n IR-Adapted'.obs;
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
+  final RxBool isBreachDetected = true.obs;
 }

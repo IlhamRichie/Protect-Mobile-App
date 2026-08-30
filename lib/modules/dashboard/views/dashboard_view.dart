@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../routes/app_routes.dart';
+import '../../../app/routes/app_pages.dart';
 import '../../../theme/app_theme.dart';
 import '../controllers/dashboard_controller.dart';
-import 'package:intl/intl.dart';
 
 class DashboardView extends StatelessWidget {
   const DashboardView({super.key});
@@ -125,11 +124,11 @@ class DashboardView extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  child: _buildActionBtn(context, 'Analytics', Icons.bar_chart, Routes.HACCP_ANALYTICS),
+                  child: _buildActionBtn(context, 'Analytics', Icons.bar_chart, Routes.EXPORT_HACCP),
                 ),
                 const SizedBox(width: 16),
                 Expanded(
-                  child: _buildActionBtn(context, 'Cameras', Icons.settings, Routes.CAMERA_MANAGEMENT),
+                  child: _buildActionBtn(context, 'Cameras', Icons.settings, Routes.CAMERA_SETUP),
                 ),
               ],
             ),

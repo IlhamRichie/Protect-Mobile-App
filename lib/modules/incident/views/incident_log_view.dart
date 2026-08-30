@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../routes/app_routes.dart';
+import '../../../app/routes/app_pages.dart';
 import '../../../theme/app_theme.dart';
 import '../controllers/incident_log_controller.dart';
 import 'package:intl/intl.dart';

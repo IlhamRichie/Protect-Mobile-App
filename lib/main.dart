@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:media_kit/media_kit.dart';
-import 'routes/app_pages.dart';
+import 'app/routes/app_pages.dart';
 import 'theme/app_theme.dart';
 
 void main() {

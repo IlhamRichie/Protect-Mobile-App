@@ -1,23 +1,13 @@
 import 'package:get/get.dart';
+import '../../../../routes/app_pages.dart';
 
 class SplashController extends GetxController {
-  //TODO: Implement SplashController
-
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
+    // Navigate to Onboarding after 2.5 seconds delay
+    Future.delayed(const Duration(milliseconds: 2500), () {
+      Get.offNamed(Routes.ONBOARDING);
+    });
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }
