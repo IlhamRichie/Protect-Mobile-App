@@ -1,4 +1,4 @@
-import '../models/incident_model.dart';
+import '../app/data/models/incident_model.dart';
 
 class MockData {
   static List<Incident> getIncidents() {

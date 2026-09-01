@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
-import '../../../../routes/app_pages.dart';
+
+import '../../../routes/app_pages.dart';
 
 class LiveTrackerController extends GetxController {
   final RxString techName = 'Bpk. Doni Prasetyo'.obs;

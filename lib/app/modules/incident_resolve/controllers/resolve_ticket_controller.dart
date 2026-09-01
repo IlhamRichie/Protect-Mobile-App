@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../../routes/app_pages.dart';
+import '../../../routes/app_pages.dart';
 
 class ResolveTicketController extends GetxController {
   final notesController = TextEditingController(text: 'Perangkap mekanis terpasang di celah dinding utara Zone A2.');

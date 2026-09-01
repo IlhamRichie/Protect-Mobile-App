@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../data/models/app_models.dart';
-import '../../../../routes/app_pages.dart';
+import '../../../routes/app_pages.dart';
 
 class TechnicianController extends GetxController {
   final RxString techName = 'Doni Prasetyo'.obs;

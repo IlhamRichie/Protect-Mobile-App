@@ -13,110 +13,183 @@ class B2bRoiEditorView extends GetView<RoiEditorController> {
       appBar: AppBar(
         title: const Text('Setup Polygon Restricted Zone'),
       ),
-      body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Card(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-              child: const Padding(
-                padding: EdgeInsets.all(16),
-                child: Row(
-                  children: [
-                    Icon(Icons.touch_app, color: AppTheme.primaryColor),
-                    SizedBox(width: 12),
-                    Expanded(
-                      child: Text(
-                        'Geser 4 titik sudut di layar CCTV di bawah untuk menyesuaikan zona batas steril AI.',
-                        style: TextStyle(fontSize: 12, color: AppTheme.textSecondary),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(height: 16),
-            AspectRatio(
-              aspectRatio: 16 / 9,
-              child: Container(
-                clipBehavior: Clip.antiAlias,
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: AppTheme.primaryColor, width: 1.5),
-                ),
-                child: LayoutBuilder(
-                  builder: (context, constraints) {
-                    final w = constraints.maxWidth;
-                    final h = constraints.maxHeight;
+      body: SafeArea(
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final isTablet = constraints.maxWidth >= 600;
+            final double horizontalPadding = isTablet ? 24.0 : 16.0;
 
-                    return GestureDetector(
-                      onPanStart: (d) => controller.onDragStart(d.localPosition, w, h),
-                      onPanUpdate: (d) => controller.onDragUpdate(d.localPosition, w, h),
-                      onPanEnd: (_) => controller.onDragEnd(),
-                      child: Stack(
-                        fit: StackFit.expand,
-                        children: [
-                          Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                                Icon(Icons.videocam, color: Colors.white24, size: 48),
-                                SizedBox(height: 8),
-                                Text('LIVE RTSP CCTV STREAM', style: TextStyle(color: Colors.white38, fontSize: 11, fontWeight: FontWeight.bold)),
-                              ],
-                            ),
-                          ),
-                          Obx(
-                            () => CustomPaint(
-                              painter: _RoiPolygonPainter(
-                                points: controller.roiNormalizedPoints
-                                    .map((p) => Offset(p.dx * w, p.dy * h))
-                                    .toList(),
-                                selectedIndex: controller.selectedPointIndex.value,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
+            return SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              padding: EdgeInsets.symmetric(
+                horizontal: horizontalPadding,
+                vertical: 16.0,
+              ),
+              child: Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 850),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Instruction Guidance Card
+                      _buildInstructionCard(),
+                      const SizedBox(height: 16),
+
+                      // Interactive CCTV ROI Canvas Container
+                      _buildCctvCanvas(),
+                      const SizedBox(height: 24),
+
+                      // Action Navigation Buttons
+                      _buildActionButtons(),
+                      const SizedBox(height: 16),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 24),
-            Row(
-              children: [
-                Expanded(
-                  child: OutlinedButton(
-                    onPressed: controller.resetRoi,
-                    style: OutlinedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 14),
-                      side: const BorderSide(color: AppTheme.primaryColor),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                    ),
-                    child: const Text('Reset Area', style: TextStyle(color: AppTheme.primaryColor, fontWeight: FontWeight.bold)),
-                  ),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: controller.saveRoiConfig,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppTheme.primaryColor,
-                      padding: const EdgeInsets.symmetric(vertical: 14),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                    ),
-                    child: const Text('Simpan & Sinkronkan AI', style: TextStyle(fontWeight: FontWeight.bold)),
-                  ),
-                ),
-              ],
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget _buildInstructionCard() {
+    return Card(
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+        side: const BorderSide(color: AppTheme.borderColor),
+      ),
+      child: const Padding(
+        padding: EdgeInsets.all(16),
+        child: Row(
+          children: [
+            Icon(Icons.touch_app, color: AppTheme.primaryColor),
+            SizedBox(width: 12),
+            Expanded(
+              child: Text(
+                'Geser 4 titik sudut di layar CCTV di bawah untuk menyesuaikan zona batas steril AI.',
+                style: TextStyle(fontSize: 12, color: AppTheme.textSecondary),
+              ),
             ),
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildCctvCanvas() {
+    return AspectRatio(
+      aspectRatio: 16 / 9,
+      child: Container(
+        clipBehavior: Clip.antiAlias,
+        decoration: BoxDecoration(
+          color: const Color(0xFF0F172A),
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: AppTheme.primaryColor, width: 1.5),
+          boxShadow: const [
+            BoxShadow(
+              color: Color(0x0F000000),
+              blurRadius: 10,
+              offset: Offset(0, 4),
+            ),
+          ],
+        ),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final w = constraints.maxWidth;
+            final h = constraints.maxHeight;
+
+            return GestureDetector(
+              onPanStart: (d) => controller.onDragStart(d.localPosition, w, h),
+              onPanUpdate: (d) => controller.onDragUpdate(d.localPosition, w, h),
+              onPanEnd: (_) => controller.onDragEnd(),
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Icon(Icons.videocam, color: Colors.white24, size: 48),
+                        SizedBox(height: 8),
+                        Text(
+                          'LIVE RTSP CCTV STREAM',
+                          style: TextStyle(
+                            color: Colors.white38,
+                            fontSize: 11,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 1.0,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Obx(
+                    () => CustomPaint(
+                      painter: _RoiPolygonPainter(
+                        points: controller.roiNormalizedPoints
+                            .map((p) => Offset(p.dx * w, p.dy * h))
+                            .toList(),
+                        selectedIndex: controller.selectedPointIndex.value,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget _buildActionButtons() {
+    return Row(
+      children: [
+        Expanded(
+          child: OutlinedButton(
+            onPressed: controller.resetRoi,
+            style: OutlinedButton.styleFrom(
+              padding: const EdgeInsets.symmetric(vertical: 14),
+              side: const BorderSide(color: AppTheme.primaryColor),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+            ),
+            child: const FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text(
+                'Reset Area',
+                style: TextStyle(
+                  color: AppTheme.primaryColor,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(width: 12),
+        Expanded(
+          child: ElevatedButton(
+            onPressed: controller.saveRoiConfig,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppTheme.primaryColor,
+              padding: const EdgeInsets.symmetric(vertical: 14),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+            ),
+            child: const FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text(
+                'Simpan & Sinkronkan AI',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
@@ -168,5 +241,7 @@ class _RoiPolygonPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
+  bool shouldRepaint(covariant _RoiPolygonPainter oldDelegate) {
+    return oldDelegate.points != points || oldDelegate.selectedIndex != selectedIndex;
+  }
 }

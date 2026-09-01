@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import '../../../../routes/app_pages.dart';
+import '../../../routes/app_pages.dart';
 
 class DashboardController extends GetxController {
   final RxString selectedFacility = 'Gudang Cikarang Plant 01'.obs;

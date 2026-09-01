@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../../routes/app_pages.dart';
 
 class TechnicianChemicalLogController extends GetxController {
   final RxString selectedAgent = 'Exterra Eco-Bait Matrix (Termite)'.obs;
