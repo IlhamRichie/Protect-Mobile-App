@@ -32,6 +32,10 @@ abstract class Routes {
   static const INCIDENT_RESOLVE = _Paths.INCIDENT_RESOLVE;
   static const CAMERA_MANAGEMENT = _Paths.CAMERA_MANAGEMENT;
   static const EXPORT_HACCP = _Paths.EXPORT_HACCP;
+  static const B2B_ROI_EDITOR = _Paths.B2B_ROI_EDITOR;
+  static const B2B_ESG_METRICS = _Paths.B2B_ESG_METRICS;
+  static const TECH_CHEMICAL_LOG = _Paths.TECH_CHEMICAL_LOG;
+  static const B2B_ALERT_SETTINGS = _Paths.B2B_ALERT_SETTINGS;
 
   // Phase 4: Field Technician Mode & Profile
   static const TECHNICIAN_JOB_BOARD = _Paths.TECHNICIAN_JOB_BOARD;
@@ -68,6 +72,10 @@ abstract class _Paths {
   static const INCIDENT_RESOLVE = '/b2b/incidents/resolve';
   static const CAMERA_MANAGEMENT = '/b2b/camera/management';
   static const EXPORT_HACCP = '/b2b/reports';
+  static const B2B_ROI_EDITOR = '/b2b/camera/roi-editor';
+  static const B2B_ESG_METRICS = '/b2b/analytics/esg-impact';
+  static const TECH_CHEMICAL_LOG = '/tech/job/chemical-log';
+  static const B2B_ALERT_SETTINGS = '/b2b/settings/alerts';
 
   static const TECHNICIAN_JOB_BOARD = '/tech/jobs';
   static const TECHNICIAN_JOB_DETAIL = '/tech/job/detail';

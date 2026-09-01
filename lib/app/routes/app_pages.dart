@@ -1,5 +1,8 @@
 import 'package:get/get.dart';
 
+import '../modules/analytics_report/views/b2b_esg_metrics_view.dart';
+import '../modules/camera_management/views/b2b_alert_settings_view.dart';
+import '../modules/camera_management/views/b2b_roi_editor_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
 import '../modules/onboarding/bindings/onboarding_binding.dart';
@@ -45,6 +48,7 @@ import '../modules/export_haccp/bindings/export_haccp_binding.dart';
 import '../modules/export_haccp/views/export_haccp_view.dart';
 
 import '../modules/technician/bindings/technician_binding.dart';
+import '../modules/technician/views/technician_chemical_log_view.dart';
 import '../modules/technician/views/technician_job_board_view.dart';
 import '../modules/technician/views/technician_job_detail_view.dart';
 import '../modules/technician/views/technician_signoff_view.dart';
@@ -179,6 +183,23 @@ class AppPages {
       name: _Paths.PROFILE,
       page: () => const ProfileView(),
       binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.B2B_ROI_EDITOR,
+      page: () => const B2bRoiEditorView(),
+      binding: CameraManagementBinding(),
+    ),
+    GetPage(
+      name: _Paths.B2B_ESG_METRICS,
+      page: () => const B2bEsgMetricsView(),
+    ),
+    GetPage(
+      name: _Paths.TECH_CHEMICAL_LOG,
+      page: () => const TechnicianChemicalLogView(),
+    ),
+    GetPage(
+      name: _Paths.B2B_ALERT_SETTINGS,
+      page: () => const B2bAlertSettingsView(),
     ),
   ];
 }

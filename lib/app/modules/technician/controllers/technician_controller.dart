@@ -13,6 +13,20 @@ class TechnicianController extends GetxController {
   final RxBool sopMoistureChecked = true.obs;
   final RxBool sopBaitChecked = true.obs;
 
+  // 1. Dynamic Active Job State
+  final Rxn<TechJob> currentJob = Rxn<TechJob>();
+
+  // 2. ESG Chemical & Bait Usage Logger States
+  final RxString selectedChemical = 'Exterra Termite Baiting Agent'.obs;
+  final TextEditingController chemicalDosageController = TextEditingController(text: '2.5');
+  final RxString chemicalUnit = 'Liter'.obs;
+
+  final List<String> availableChemicals = [
+    'Exterra Termite Baiting Agent',
+    'Fipronil Eco-Shield 2.5 EC',
+    'Biorational Rodenticide Block',
+  ];
+
   final RxList<TechJob> todayJobs = <TechJob>[
     TechJob(
       jobId: 'JOB-901',
@@ -54,6 +68,7 @@ class TechnicianController extends GetxController {
   }
 
   void startNavigation(TechJob job) {
+    currentJob.value = job;
     Get.snackbar(
       'Mulai Navigasi',
       'Membuka rute GPS Maps ke lokasi ${job.clientName}',
@@ -75,11 +90,25 @@ class TechnicianController extends GetxController {
     );
   }
 
+  // 3. Method Pencatatan Dosis Bahan Kimia Ramah Lingkungan
+  void saveChemicalLog() {
+    Get.snackbar(
+      'Penggunaan Bahan Tercatat',
+      'Tercatat: ${chemicalDosageController.text} ${chemicalUnit.value} ${selectedChemical.value}',
+      snackPosition: SnackPosition.TOP,
+      backgroundColor: const Color(0xFF059669),
+      colorText: Colors.white,
+    );
+  }
+
   void goToSignOff() {
     Get.toNamed(Routes.TECHNICIAN_SIGNOFF);
   }
 
   void completeJobAndIssueCertificate() {
+    if (currentJob.value != null) {
+      currentJob.value!.status = 'Completed';
+    }
     Get.snackbar(
       'Pekerjaan Selesai!',
       'E-Sertifikat Bebas Hama & Garansi 12 Bulan berhasil diterbitkan untuk klien.',
@@ -89,5 +118,11 @@ class TechnicianController extends GetxController {
       duration: const Duration(seconds: 3),
     );
     Get.offAllNamed(Routes.TECHNICIAN_JOB_BOARD);
+  }
+
+  @override
+  void onClose() {
+    chemicalDosageController.dispose();
+    super.onClose();
   }
 }
