@@ -10,6 +10,10 @@ import '../modules/onboarding/views/onboarding_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 
+// B2C Main Wrapper (IndexedStack anti-looping)
+import '../modules/main_wrapper/bindings/main_wrapper_binding.dart';
+import '../modules/main_wrapper/views/main_wrapper_view.dart';
+
 import '../modules/b2c_home/bindings/b2c_home_binding.dart';
 import '../modules/b2c_home/views/b2c_home_view.dart';
 import '../modules/b2c_chat/bindings/cs_chat_binding.dart';
@@ -40,6 +44,8 @@ import '../modules/camera_management/bindings/camera_management_binding.dart';
 import '../modules/camera_management/views/camera_management_view.dart';
 import '../modules/live_feed/bindings/live_feed_binding.dart';
 import '../modules/live_feed/views/live_feed_view.dart';
+import '../modules/incident_log/bindings/incident_log_binding.dart';
+import '../modules/incident_log/views/incident_log_view.dart';
 import '../modules/incident_detail/bindings/incident_detail_binding.dart';
 import '../modules/incident_detail/views/incident_detail_view.dart';
 import '../modules/incident_resolve/bindings/resolve_ticket_binding.dart';
@@ -52,11 +58,13 @@ import '../modules/technician/views/technician_chemical_log_view.dart';
 import '../modules/technician/views/technician_job_board_view.dart';
 import '../modules/technician/views/technician_job_detail_view.dart';
 import '../modules/technician/views/technician_signoff_view.dart';
+import '../modules/technician/views/technician_sop_view.dart';
 
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 
 part 'app_routes.dart';
+
 
 class AppPages {
   AppPages._();
@@ -78,6 +86,12 @@ class AppPages {
       name: _Paths.LOGIN,
       page: () => const LoginView(),
       binding: LoginBinding(),
+    ),
+    // ── B2C Main Wrapper (IndexedStack) ─────────────────────────────────────
+    GetPage(
+      name: _Paths.MAIN_WRAPPER,
+      page: () => const MainWrapperView(),
+      binding: MainWrapperBinding(),
     ),
     GetPage(
       name: _Paths.B2C_HOME,
@@ -149,6 +163,12 @@ class AppPages {
       page: () => const LiveFeedView(),
       binding: LiveFeedBinding(),
     ),
+    // ── B2B Enterprise Flow ───────────────────────────────────────────────────
+    GetPage(
+      name: _Paths.INCIDENT_LOG,
+      page: () => const IncidentLogView(),
+      binding: IncidentLogBinding(),
+    ),
     GetPage(
       name: _Paths.INCIDENT_DETAIL,
       page: () => const IncidentDetailView(),
@@ -172,6 +192,12 @@ class AppPages {
     GetPage(
       name: _Paths.TECHNICIAN_JOB_DETAIL,
       page: () => const TechnicianJobDetailView(),
+      binding: TechnicianBinding(),
+    ),
+    // ── Field Technician Execution Flow ──────────────────────────────────────
+    GetPage(
+      name: _Paths.TECHNICIAN_SOP,
+      page: () => const TechnicianSopView(),
       binding: TechnicianBinding(),
     ),
     GetPage(

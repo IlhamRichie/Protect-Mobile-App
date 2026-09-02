@@ -140,20 +140,7 @@ class B2cHomeView extends GetView<B2cHomeController> {
           },
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
-        onTap: controller.changeBottomNav,
-        selectedItemColor: AppTheme.primaryColor,
-        unselectedItemColor: AppTheme.textSecondary,
-        backgroundColor: Colors.white,
-        type: BottomNavigationBarType.fixed,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.storefront), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.shopping_bag_outlined), label: 'Orders'),
-          BottomNavigationBarItem(icon: Icon(Icons.show_chart), label: 'Activity'),
-          BottomNavigationBarItem(icon: Icon(Icons.person_outline), label: 'Profile'),
-        ],
-      ),
+      // BottomNavigationBar dikelola oleh MainWrapperView (IndexedStack)
     );
   }
 

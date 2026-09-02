@@ -38,10 +38,11 @@ class AppTheme {
   );
 
   // Direct Shade Aliases for Quick Access
-  static Color get emerald50 => emerald.shade50;
+  static const Color emerald50 = Color(0xFFECFDF5);   // const alias — aman untuk const context
   static Color get emerald500 => emerald.shade500;
   static Color get emerald600 => emerald.shade600;
   static Color get emerald700 => emerald.shade700;
+  static const Color emerald700Const = Color(0xFF047857);
 
   static LinearGradient primaryGradient = const LinearGradient(
     colors: [Color(0xFF059669), Color(0xFF10B981)],
@@ -119,6 +120,39 @@ class AppTheme {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
           side: const BorderSide(color: borderColor, width: 1),
+        ),
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          foregroundColor: primaryColor,
+          side: const BorderSide(color: primaryColor, width: 1.5),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          textStyle: GoogleFonts.plusJakartaSans(
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        filled: true,
+        fillColor: const Color(0xFFF1F5F9),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide.none,
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide.none,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: primaryColor, width: 1.5),
+        ),
+        hintStyle: GoogleFonts.plusJakartaSans(
+          color: textSecondary,
+          fontSize: 13,
         ),
       ),
     );

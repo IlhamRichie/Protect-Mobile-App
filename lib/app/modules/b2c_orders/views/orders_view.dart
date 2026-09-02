@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import '../../../../theme/app_theme.dart';
-import '../../../routes/app_pages.dart';
 import '../controllers/orders_controller.dart';
 
 class OrdersView extends GetView<OrdersController> {
@@ -104,37 +103,7 @@ class OrdersView extends GetView<OrdersController> {
           },
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 1,
-        onTap: (index) {
-          if (index == 0) Get.offAllNamed(Routes.B2C_HOME);
-          if (index == 1) return;
-          if (index == 2) Get.toNamed(Routes.B2C_TRACKER);
-          if (index == 3) Get.toNamed(Routes.PROFILE);
-        },
-        selectedItemColor: AppTheme.primaryColor,
-        unselectedItemColor: AppTheme.textSecondary,
-        backgroundColor: Colors.white,
-        type: BottomNavigationBarType.fixed,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.storefront_outlined),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_bag_outlined),
-            label: 'Orders',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.show_chart),
-            label: 'Activity',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
-            label: 'Profile',
-          ),
-        ],
-      ),
+      // BottomNavigationBar dikelola oleh MainWrapperView (IndexedStack)
     );
   }
 

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../routes/app_pages.dart';
 import '../../../../theme/app_theme.dart';
 import '../controllers/profile_controller.dart';
 
@@ -54,37 +53,7 @@ class ProfileView extends GetView<ProfileController> {
           },
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 3, // Profile tab active
-        onTap: (index) {
-          if (index == 0) Get.offAllNamed(Routes.B2C_HOME);
-          if (index == 1) Get.toNamed(Routes.BOOKING_SERVICE);
-          if (index == 2) Get.toNamed(Routes.B2C_TRACKER);
-          if (index == 3) return;
-        },
-        selectedItemColor: AppTheme.primaryColor,
-        unselectedItemColor: AppTheme.textSecondary,
-        backgroundColor: Colors.white,
-        type: BottomNavigationBarType.fixed,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.storefront_outlined),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_bag_outlined),
-            label: 'Orders',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.show_chart),
-            label: 'Activity',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
-            label: 'Profile',
-          ),
-        ],
-      ),
+      // BottomNavigationBar dikelola oleh MainWrapperView (IndexedStack)
     );
   }
 

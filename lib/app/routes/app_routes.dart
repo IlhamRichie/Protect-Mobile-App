@@ -8,6 +8,9 @@ abstract class Routes {
   static const ONBOARDING = _Paths.ONBOARDING;
   static const LOGIN = _Paths.LOGIN;
 
+  // B2C Wrapper (IndexedStack anti-looping BottomNavBar)
+  static const MAIN_WRAPPER = _Paths.MAIN_WRAPPER;
+
   // Phase 2: B2C Retail & Consultative Flow
   static const B2C_HOME = _Paths.B2C_HOME;
   static const B2C_CHAT = _Paths.B2C_CHAT;
@@ -50,6 +53,7 @@ abstract class _Paths {
   static const SPLASH = '/splash';
   static const ONBOARDING = '/onboarding';
   static const LOGIN = '/login';
+  static const MAIN_WRAPPER = '/main';
 
   static const B2C_HOME = '/b2c/home';
   static const B2C_CHAT = '/b2c/chat';
