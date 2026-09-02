@@ -62,21 +62,29 @@ fun DigitalWarrantyScreen(
                         modifier = Modifier.padding(20.dp),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        // Gold Seal Header
-                        Box(
-                            modifier = Modifier
-                                .size(64.dp)
-                                .clip(CircleShape)
-                                .background(Emerald50)
-                                .border(2.dp, WarningColor, CircleShape),
-                            contentAlignment = Alignment.Center
+                        // Official Brand Logo & Gold Seal Header
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
                         ) {
-                            Icon(
-                                imageVector = Icons.Default.Verified,
-                                contentDescription = null,
-                                tint = WarningColor,
-                                modifier = Modifier.size(36.dp)
-                            )
+                            com.example.protect.ui.components.ProtectBrandLogo(height = 24.dp)
+
+                            Box(
+                                modifier = Modifier
+                                    .size(44.dp)
+                                    .clip(CircleShape)
+                                    .background(Emerald50)
+                                    .border(2.dp, WarningColor, CircleShape),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.Verified,
+                                    contentDescription = null,
+                                    tint = WarningColor,
+                                    modifier = Modifier.size(24.dp)
+                                )
+                            }
                         }
 
                         Spacer(modifier = Modifier.height(12.dp))

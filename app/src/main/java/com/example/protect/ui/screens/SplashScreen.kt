@@ -70,65 +70,62 @@ fun SplashScreen(
         ) {
             Box(
                 contentAlignment = Alignment.Center,
-                modifier = Modifier.size(160.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(130.dp)
             ) {
-                // Radar Ring Animation
-                Canvas(modifier = Modifier.fillMaxSize().scale(pulseScale)) {
+                // Radar Ring Pulse Animation
+                Canvas(modifier = Modifier.size(140.dp).scale(pulseScale)) {
                     drawCircle(
-                        color = Emerald500.copy(alpha = 0.2f),
+                        color = Emerald500.copy(alpha = 0.25f),
                         radius = size.minDimension / 2,
                         style = Stroke(width = 4.dp.toPx())
                     )
                 }
 
-                Box(
-                    modifier = Modifier
-                        .size(96.dp)
-                        .clip(RoundedCornerShape(24.dp))
-                        .background(Emerald600),
-                    contentAlignment = Alignment.Center
+                Surface(
+                    shape = RoundedCornerShape(20.dp),
+                    color = SurfaceLight,
+                    shadowElevation = 8.dp,
+                    modifier = Modifier.padding(horizontal = 16.dp)
                 ) {
-                    Icon(
-                        imageVector = Icons.Default.Shield,
-                        contentDescription = "Logo",
-                        tint = SurfaceLight,
-                        modifier = Modifier.size(54.dp)
-                    )
+                    Box(
+                        contentAlignment = Alignment.Center,
+                        modifier = Modifier.padding(horizontal = 24.dp, vertical = 16.dp)
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.logo_protect),
+                            contentDescription = "PROTECT Logo",
+                            modifier = Modifier
+                                .height(56.dp)
+                                .testTag("app_logo_image")
+                        )
+                    }
                 }
             }
 
             Spacer(modifier = Modifier.height(28.dp))
 
-            Text(
-                text = "PROTECT",
-                fontSize = 32.sp,
-                fontWeight = FontWeight.ExtraBold,
-                letterSpacing = 4.sp,
-                color = DarkSlate900,
-                modifier = Modifier.testTag("app_logo_text")
-            )
-
-            Spacer(modifier = Modifier.height(8.dp))
-
             Surface(
                 color = Emerald50,
-                shape = RoundedCornerShape(20.dp)
+                shape = RoundedCornerShape(20.dp),
+                border = androidx.compose.foundation.BorderStroke(1.dp, Emerald500.copy(alpha = 0.3f))
             ) {
                 Text(
-                    text = "ProViewAI & Pest Control Companion",
+                    text = "3-in-1 Ecosystem: B2C • B2B ProViewAI • Field Tech",
                     fontSize = 12.sp,
                     fontWeight = FontWeight.Bold,
                     color = Emerald700,
-                    modifier = Modifier.padding(horizontal = 14.dp, vertical = 6.dp)
+                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
                 )
             }
 
-            Spacer(modifier = Modifier.height(24.dp))
+            Spacer(modifier = Modifier.height(20.dp))
 
             Text(
                 text = "\"The Best Protection For Your Environment\"",
                 fontSize = 13.sp,
-                fontWeight = FontWeight.Medium,
+                fontWeight = FontWeight.SemiBold,
                 color = TextSecondary,
                 textAlign = TextAlign.Center
             )

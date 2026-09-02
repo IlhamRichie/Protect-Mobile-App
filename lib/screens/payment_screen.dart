@@ -191,7 +191,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
           ],
 
           // Order Details
-          const SectionHeader(title = 'Ringkasan Layanan'),
+          const SectionHeader(title: 'Ringkasan Layanan'),
           const SizedBox(height: 8),
           Container(
             padding: const EdgeInsets.all(16),
@@ -239,7 +239,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
           const SizedBox(height: 16),
 
           // Voucher Input
-          const SectionHeader(title = 'Kode Promo / Voucher'),
+          const SectionHeader(title: 'Kode Promo / Voucher'),
           const SizedBox(height: 8),
           Row(
             children: [
@@ -271,7 +271,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
           const SizedBox(height: 16),
 
           // Payment Methods
-          const SectionHeader(title = 'Metode Pembayaran'),
+          const SectionHeader(title: 'Metode Pembayaran'),
           const SizedBox(height: 8),
           ..._paymentMethods.map((method) {
             final isSelected = method == _selectedPaymentMethod;

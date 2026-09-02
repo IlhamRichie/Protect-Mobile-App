@@ -2,6 +2,36 @@ package com.example.protect.model
 
 import androidx.compose.ui.graphics.vector.ImageVector
 
+enum class UserRole(
+    val title: String,
+    val shortName: String,
+    val subtitle: String,
+    val iconEmoji: String,
+    val businessModel: String
+) {
+    B2C_RETAIL(
+        title = "Pengguna Retail (B2C)",
+        shortName = "Retail B2C",
+        subtitle = "Rumah, Ruko & Apartemen • Pemesanan Cepat & E-Garansi",
+        iconEmoji = "🏠",
+        businessModel = "Model Transaksional: Bayar per-kunjungan treatment atau langganan pencegahan berkala."
+    ),
+    B2B_ENTERPRISE(
+        title = "Perusahaan Korporat (B2B)",
+        shortName = "Enterprise B2B",
+        subtitle = "Pabrik, Gudang & F&B • CCTV ProViewAI, HACCP & ESG",
+        iconEmoji = "🏢",
+        businessModel = "Model SaaS + Hardware: Biaya langganan software AI monitoring CCTV & audit berkala."
+    ),
+    FIELD_TECHNICIAN(
+        title = "Eksekutor Lapangan (Teknisi)",
+        shortName = "Field Tech",
+        subtitle = "Petugas Pest Control • GPS Check-In, SOP & E-Sign",
+        iconEmoji = "👷‍♂️",
+        businessModel = "Operasional Lapangan: Pelaksanaan SOP keselamatan, chemical logging, dan berita acara digital."
+    )
+}
+
 data class ServiceItem(
     val id: String,
     val title: String,

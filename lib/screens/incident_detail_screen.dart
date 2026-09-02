@@ -161,7 +161,7 @@ class IncidentDetailScreen extends StatelessWidget {
           const SizedBox(height: 16),
 
           // SOP Corrective Action
-          const SectionHeader(title = 'Rekomendasi Tindakan Korektif (SOP)'),
+          const SectionHeader(title: 'Rekomendasi Tindakan Korektif (SOP)'),
           const SizedBox(height: 8),
           Container(
             padding: const EdgeInsets.all(16),

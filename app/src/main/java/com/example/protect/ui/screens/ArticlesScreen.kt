@@ -169,7 +169,7 @@ fun ArticleCardItem(article: ArticleItem) {
                 color = TextSecondary,
                 lineHeight = 18.sp,
                 maxLines = 3,
-                overflow = TextOverflow.ellipsis
+                overflow = TextOverflow.Ellipsis
             )
 
             Spacer(modifier = Modifier.height(12.dp))

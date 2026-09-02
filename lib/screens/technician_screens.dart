@@ -238,7 +238,7 @@ class TechnicianJobDetailScreen extends StatelessWidget {
           ),
           const SizedBox(height: 16),
 
-          const SectionHeader(title = 'Parameter Pekerjaan'),
+          const SectionHeader(title: 'Parameter Pekerjaan'),
           const SizedBox(height: 8),
           Container(
             padding: const EdgeInsets.all(16),
@@ -266,7 +266,7 @@ class TechnicianJobDetailScreen extends StatelessWidget {
           ),
           const SizedBox(height: 16),
 
-          const SectionHeader(title = 'Akses Cepat Tahapan'),
+          const SectionHeader(title: 'Akses Cepat Tahapan'),
           const SizedBox(height: 8),
           Row(
             children: [
@@ -392,7 +392,7 @@ class _TechnicianSopScreenState extends State<TechnicianSopScreen> {
           ),
           const SizedBox(height: 16),
 
-          const SectionHeader(title = '1. Kelengkapan Alat Pelindung Diri (APD)'),
+          const SectionHeader(title: '1. Kelengkapan Alat Pelindung Diri (APD)'),
           const SizedBox(height: 8),
           Container(
             decoration: BoxDecoration(
@@ -414,7 +414,7 @@ class _TechnicianSopScreenState extends State<TechnicianSopScreen> {
           ),
           const SizedBox(height: 16),
 
-          const SectionHeader(title = '2. Inspeksi Area & Keamanan Pangan'),
+          const SectionHeader(title: '2. Inspeksi Area & Keamanan Pangan'),
           const SizedBox(height: 8),
           Container(
             decoration: BoxDecoration(
@@ -511,7 +511,7 @@ class _TechnicianChemicalLogScreenState extends State<TechnicianChemicalLogScree
           ),
           const SizedBox(height: 16),
 
-          const SectionHeader(title = '1. Pilih Formula Bahan Aktif'),
+          const SectionHeader(title: '1. Pilih Formula Bahan Aktif'),
           const SizedBox(height: 8),
           ..._agents.map((ag) {
             final isSelected = ag == _selectedAgent;
@@ -536,7 +536,7 @@ class _TechnicianChemicalLogScreenState extends State<TechnicianChemicalLogScree
           }),
           const SizedBox(height: 16),
 
-          const SectionHeader(title = '2. Jumlah Dosis & Satuan Ukur'),
+          const SectionHeader(title: '2. Jumlah Dosis & Satuan Ukur'),
           const SizedBox(height: 8),
           Container(
             padding: const EdgeInsets.all(16),
@@ -588,7 +588,7 @@ class _TechnicianChemicalLogScreenState extends State<TechnicianChemicalLogScree
           ),
           const SizedBox(height: 16),
 
-          const SectionHeader(title = '3. Lokasi Penempatan Spesifik'),
+          const SectionHeader(title: '3. Lokasi Penempatan Spesifik'),
           const SizedBox(height: 8),
           TextField(
             controller: _locController,
@@ -705,8 +705,8 @@ class _TechnicianSignoffScreenState extends State<TechnicianSignoffScreen> {
 
           // Interactive Signature Pad
           SectionHeader(
-            title = 'Pad Tanda Tangan Klien (E-Sign)',
-            actionTitle = 'Hapus / Ulangi',
+            title: 'Pad Tanda Tangan Klien (E-Sign)',
+            actionTitle: 'Hapus / Ulangi',
             onAction: _clearPad,
           ),
           const SizedBox(height: 8),

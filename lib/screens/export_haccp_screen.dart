@@ -102,7 +102,7 @@ class _ExportHaccpScreenState extends State<ExportHaccpScreen> {
           ],
 
           // Period Selector
-          const SectionHeader(title = '1. Pilih Periode Audit'),
+          const SectionHeader(title: '1. Pilih Periode Audit'),
           const SizedBox(height: 8),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -123,7 +123,7 @@ class _ExportHaccpScreenState extends State<ExportHaccpScreen> {
           const SizedBox(height: 16),
 
           // Format Selector
-          const SectionHeader(title = '2. Format Dokumen'),
+          const SectionHeader(title: '2. Format Dokumen'),
           const SizedBox(height: 8),
           ..._formats.map((fmt) {
             final isSelected = fmt == _selectedFormat;
@@ -149,7 +149,7 @@ class _ExportHaccpScreenState extends State<ExportHaccpScreen> {
           const SizedBox(height: 16),
 
           // Inclusions
-          const SectionHeader(title = '3. Lampiran Bukti'),
+          const SectionHeader(title: '3. Lampiran Bukti'),
           const SizedBox(height: 8),
           Container(
             decoration: BoxDecoration(

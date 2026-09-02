@@ -100,7 +100,7 @@ class _ResolveTicketScreenState extends State<ResolveTicketScreen> {
           ],
 
           // Checklist
-          const SectionHeader(title = '1. Checklist Verifikasi Tindakan'),
+          const SectionHeader(title: '1. Checklist Verifikasi Tindakan'),
           const SizedBox(height: 8),
           Container(
             decoration: BoxDecoration(
@@ -143,7 +143,7 @@ class _ResolveTicketScreenState extends State<ResolveTicketScreen> {
           const SizedBox(height: 16),
 
           // Notes
-          const SectionHeader(title = '2. Laporan Tindakan Korektif (Log Catatan)'),
+          const SectionHeader(title: '2. Laporan Tindakan Korektif (Log Catatan)'),
           const SizedBox(height: 8),
           TextField(
             controller: _notesController,

@@ -265,19 +265,19 @@ object SampleDataProvider {
 
     val onboardingSlides = listOf(
         OnboardingSlide(
-            title = "ProViewAI Computer Vision",
-            description = "Monitoring hama 24/7 berbasis kecerdasan buatan melalui CCTV RTSP dengan deteksi akurat dan boundary intrusion alert.",
-            badgeText = "AI REAL-TIME DETECTION"
+            title = "1. Pengguna Retail (B2C Residential)",
+            description = "Pemesanan mandiri 3-step wizard untuk rumah, ruko, & apartemen. Konsultasi CS 24/7, live GPS tracking teknisi, dan e-Garansi resmi 12 bulan.",
+            badgeText = "B2C • RETAIL & RESIDENTIAL"
         ),
         OnboardingSlide(
-            title = "Live GPS Tracking Teknisi",
-            description = "Pantau pergerakan teknisi berlisensi secara langsung dari peta interaktif hingga tiba tepat waktu di lokasi Anda.",
-            badgeText = "SMART DISPATCH & ROUTE"
+            title = "2. Korporat & Pabrik (B2B ProViewAI)",
+            description = "Command center 24/7 dengan CCTV AI Edge, deteksi instan zona kritis ROI, ekspor laporan resmi HACCP, dan metrik reduksi kimia ramah lingkungan ESG.",
+            badgeText = "B2B • SAAS & PROVIEWAI"
         ),
         OnboardingSlide(
-            title = "Garansi 12 Bulan & Audit ESG",
-            description = "Dapatkan sertifikat garansi digital resmi dengan barcode verifikasi dan laporan kepatuhan sanitasi berstandar HACCP.",
-            badgeText = "ECO-FRIENDLY & CERTIFIED"
+            title = "3. Eksekutor Lapangan (Field Tech)",
+            description = "Modul terdedikasi teknisi untuk verifikasi GPS check-in lokasi, checklist SOP keselamatan kerja, pencatatan dosis kimia, dan e-Sign pad digital.",
+            badgeText = "FIELD TECH • WORK ORDER & E-SIGN"
         )
     )
 }

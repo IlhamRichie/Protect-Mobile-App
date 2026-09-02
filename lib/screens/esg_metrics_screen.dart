@@ -62,7 +62,7 @@ class _B2bEsgMetricsScreenState extends State<B2bEsgMetricsScreen> {
             const SizedBox(height: 16),
           ],
 
-          const SectionHeader(title = 'Indikator Kunci Keberlanjutan Lingkungan'),
+          const SectionHeader(title: 'Indikator Kunci Keberlanjutan Lingkungan'),
           const SizedBox(height: 8),
 
           ...SampleData.esgMetrics.map((metric) => Container(
@@ -108,7 +108,7 @@ class _B2bEsgMetricsScreenState extends State<B2bEsgMetricsScreen> {
           const SizedBox(height: 12),
 
           // Chemical Breakdown
-          const SectionHeader(title = 'Distribusi Agen Pengendali Ramah Lingkungan'),
+          const SectionHeader(title: 'Distribusi Agen Pengendali Ramah Lingkungan'),
           const SizedBox(height: 8),
           Container(
             padding: const EdgeInsets.all(16),

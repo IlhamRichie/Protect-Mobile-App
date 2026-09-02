@@ -25,7 +25,8 @@ import com.example.protect.ui.components.SectionHeader
 
 @Composable
 fun ExportHaccpScreen(
-    onBack: () -> Unit
+    onBack: () -> Unit = {},
+    onBackClick: () -> Unit = onBack
 ) {
     var selectedPeriod by remember { mutableStateOf("Kuartal 3 (Jul - Sep 2026)") }
     var selectedFormat by remember { mutableStateOf("PDF Resmi (Digital Sign)") }
@@ -48,7 +49,7 @@ fun ExportHaccpScreen(
         topBar = {
             ProtectTopBar(
                 title = "Export Dokumen Audit HACCP",
-                onBackClick = onBack
+                onBackClick = onBackClick
             )
         },
         bottomBar = {
@@ -209,7 +210,16 @@ fun ExportHaccpScreen(
                     colors = CardDefaults.cardColors(containerColor = SurfaceLight),
                     modifier = Modifier.border(1.dp, BorderColor, RoundedCornerShape(14.dp))
                 ) {
-                    Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            com.example.protect.ui.components.ProtectBrandLogo(height = 20.dp)
+                            Text("Standard HACCP 2026", fontSize = 11.sp, fontWeight = FontWeight.Bold, color = Emerald700)
+                        }
+                        HorizontalDivider()
                         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
                             Text("Skor Kepatuhan Sanitasi", fontSize = 12.sp, color = TextSecondary)
                             Text("98.4% (Grade A+)", fontSize = 12.sp, fontWeight = FontWeight.Bold, color = Emerald600)

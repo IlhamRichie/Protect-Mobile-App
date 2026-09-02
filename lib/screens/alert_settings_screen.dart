@@ -78,7 +78,7 @@ class _AlertSettingsScreenState extends State<AlertSettingsScreen> {
           ],
 
           // Webhook Endpoint Card
-          const SectionHeader(title = '1. Enterprise Webhook URL Endpoint'),
+          const SectionHeader(title: '1. Enterprise Webhook URL Endpoint'),
           const SizedBox(height: 8),
           TextField(
             controller: _webhookController,
@@ -93,7 +93,7 @@ class _AlertSettingsScreenState extends State<AlertSettingsScreen> {
           const SizedBox(height: 16),
 
           // Notification Channels
-          const SectionHeader(title = '2. Saluran Notifikasi Darurat'),
+          const SectionHeader(title: '2. Saluran Notifikasi Darurat'),
           const SizedBox(height: 8),
           Container(
             decoration: BoxDecoration(
@@ -136,7 +136,7 @@ class _AlertSettingsScreenState extends State<AlertSettingsScreen> {
           const SizedBox(height: 16),
 
           // Sensitivity Threshold Slider
-          SectionHeader(title = '3. Ambang Batas Sensitivitas AI: ${(_threshold * 100).toInt()}%'),
+          SectionHeader(title: '3. Ambang Batas Sensitivitas AI: ${(_threshold * 100).toInt()}%'),
           const SizedBox(height: 8),
           Container(
             padding: const EdgeInsets.all(16),

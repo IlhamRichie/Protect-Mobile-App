@@ -13,6 +13,20 @@ import kotlinx.coroutines.launch
 
 class AppViewModel : ViewModel() {
 
+    // Active Ecosystem Role State (B2C, B2B Enterprise ProViewAI, Field Technician)
+    private val _currentRole = MutableStateFlow(UserRole.B2C_RETAIL)
+    val currentRole: StateFlow<UserRole> = _currentRole.asStateFlow()
+
+    // GPS Check-In State for Field Technician
+    val isGpsCheckedIn = MutableStateFlow(false)
+    val gpsLocationName = MutableStateFlow("PT Boga Lestari Prima - Plant Cikarang")
+    val gpsCoordinates = MutableStateFlow("-6.3241° S, 107.1528° E (Akurasi: ±3m)")
+
+    // Instant Quote Estimator State for B2C
+    val quoteAreaM2 = MutableStateFlow("120")
+    val quotePestType = MutableStateFlow("Rayap & Serangga")
+    val quoteEstimatedPrice = MutableStateFlow(450000L)
+
     // Incidents State
     private val _incidents = MutableStateFlow(SampleDataProvider.initialIncidents)
     val incidents: StateFlow<List<IncidentItem>> = _incidents.asStateFlow()
@@ -254,6 +268,40 @@ class AppViewModel : ViewModel() {
             list.map {
                 if (it.id == camId) it.copy(isAiActive = !it.isAiActive) else it
             }
+        }
+    }
+
+    fun setRole(role: UserRole) {
+        _currentRole.value = role
+    }
+
+    fun recalculateQuote(areaM2Str: String, pestType: String) {
+        quoteAreaM2.value = areaM2Str
+        quotePestType.value = pestType
+        val area = areaM2Str.toDoubleOrNull() ?: 100.0
+        val baseMultiplier = when {
+            pestType.contains("Rayap", ignoreCase = true) -> 3500L
+            pestType.contains("Tikus", ignoreCase = true) -> 2800L
+            pestType.contains("Fogging", ignoreCase = true) -> 2200L
+            else -> 2500L
+        }
+        val estimated = (area * baseMultiplier).toLong().coerceAtLeast(250000L)
+        quoteEstimatedPrice.value = estimated
+    }
+
+    fun performGpsCheckIn() {
+        viewModelScope.launch {
+            delay(800)
+            isGpsCheckedIn.value = true
+        }
+    }
+
+    fun saveSignoffAndSync(jobId: String, onComplete: () -> Unit) {
+        viewModelScope.launch {
+            signatureSaved.value = true
+            updateJobStatus(jobId, JobStatus.COMPLETED)
+            delay(1200)
+            onComplete()
         }
     }
 

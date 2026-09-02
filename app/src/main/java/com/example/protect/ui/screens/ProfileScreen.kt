@@ -21,14 +21,21 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.protect.model.UserRole
 import com.example.protect.theme.*
-import com.example.protect.ui.components.ProtectTopBar
+import com.example.protect.ui.components.*
+import com.example.protect.viewmodel.AppViewModel
 
 @Composable
 fun ProfileScreen(
+    viewModel: AppViewModel? = null,
     onNavigateToChat: () -> Unit
 ) {
     var showLogoutDialog by remember { mutableStateOf(false) }
+    var showRoleSwitcher by remember { mutableStateOf(false) }
+    var showBusinessModelDialog by remember { mutableStateOf(false) }
+
+    val currentRole = viewModel?.currentRole?.collectAsState()?.value ?: UserRole.B2C_RETAIL
 
     if (showLogoutDialog) {
         AlertDialog(
@@ -48,10 +55,24 @@ fun ProfileScreen(
         )
     }
 
+    if (showRoleSwitcher && viewModel != null) {
+        RoleSwitcherBottomSheet(
+            currentRole = currentRole,
+            onRoleSelected = { viewModel.setRole(it) },
+            onDismissRequest = { showRoleSwitcher = false }
+        )
+    }
+
+    if (showBusinessModelDialog) {
+        BusinessModelDialog(
+            onDismissRequest = { showBusinessModelDialog = false }
+        )
+    }
+
     Scaffold(
         topBar = {
             ProtectTopBar(
-                title = "Profil Saya"
+                title = "Profil & Ekosistem Akun"
             )
         }
     ) { innerPadding ->
@@ -63,7 +84,7 @@ fun ProfileScreen(
             contentPadding = PaddingValues(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            // Profile Header Card
+            // Profile Header Card with Official Logo
             item {
                 Card(
                     shape = RoundedCornerShape(20.dp),
@@ -72,60 +93,160 @@ fun ProfileScreen(
                         .fillMaxWidth()
                         .border(1.dp, BorderColor, RoundedCornerShape(20.dp))
                 ) {
+                    Column(modifier = Modifier.padding(18.dp)) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            ProtectBrandLogo(height = 24.dp)
+                            StatusBadge(
+                                text = "VERIFIED ACCOUNT",
+                                backgroundColor = Emerald50,
+                                textColor = Emerald700
+                            )
+                        }
+
+                        Spacer(modifier = Modifier.height(14.dp))
+
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Box(
+                                modifier = Modifier
+                                    .size(54.dp)
+                                    .clip(CircleShape)
+                                    .background(Emerald600.copy(alpha = 0.15f)),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Text(currentRole.iconEmoji, fontSize = 24.sp)
+                            }
+
+                            Spacer(modifier = Modifier.width(14.dp))
+
+                            Column {
+                                Text(
+                                    text = when (currentRole) {
+                                        UserRole.B2C_RETAIL -> "Hendra Wijaya"
+                                        UserRole.B2B_ENTERPRISE -> "Budi Hartono (PT Boga Lestari)"
+                                        UserRole.FIELD_TECHNICIAN -> "Doni Setiawan (ID: TECH-782)"
+                                    },
+                                    fontSize = 15.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = DarkSlate900
+                                )
+                                Spacer(modifier = Modifier.height(2.dp))
+                                Text(
+                                    text = when (currentRole) {
+                                        UserRole.B2C_RETAIL -> "Pemilik Hunian & Ruko • Jakarta Selatan"
+                                        UserRole.B2B_ENTERPRISE -> "Plant & QA Manager • Cikarang"
+                                        UserRole.FIELD_TECHNICIAN -> "Senior Pest Control Specialist • Licensed"
+                                    },
+                                    fontSize = 11.sp,
+                                    color = TextSecondary
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Role Switcher Interactive Card
+            item {
+                Card(
+                    shape = RoundedCornerShape(16.dp),
+                    colors = CardDefaults.cardColors(containerColor = DarkSlate900),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable { showRoleSwitcher = true }
+                        .testTag("profile_role_switcher_card")
+                ) {
                     Row(
-                        modifier = Modifier.padding(20.dp),
+                        modifier = Modifier.padding(16.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Column(modifier = Modifier.weight(1f)) {
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Text("Ganti Peran / Ekosistem", fontSize = 13.sp, fontWeight = FontWeight.Bold, color = SurfaceLight)
+                                Spacer(modifier = Modifier.width(6.dp))
+                                StatusBadge(
+                                    text = currentRole.shortName,
+                                    backgroundColor = Emerald600,
+                                    textColor = SurfaceLight
+                                )
+                            }
+                            Spacer(modifier = Modifier.height(4.dp))
+                            Text(
+                                text = "Beralih antara B2C Retail, B2B Enterprise, atau Field Tech Mode.",
+                                fontSize = 11.sp,
+                                color = TextMuted
+                            )
+                        }
+
+                        Icon(
+                            imageVector = Icons.Default.SwapHoriz,
+                            contentDescription = null,
+                            tint = Emerald400,
+                            modifier = Modifier.size(24.dp)
+                        )
+                    }
+                }
+            }
+
+            // Monetization & Business Model Card
+            item {
+                Card(
+                    shape = RoundedCornerShape(16.dp),
+                    colors = CardDefaults.cardColors(containerColor = SurfaceLight),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .border(1.dp, BorderColor, RoundedCornerShape(16.dp))
+                        .clickable { showBusinessModelDialog = true }
+                        .testTag("profile_business_model_card")
+                ) {
+                    Row(
+                        modifier = Modifier.padding(16.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Box(
                             modifier = Modifier
-                                .size(56.dp)
-                                .clip(CircleShape)
-                                .background(Emerald50),
+                                .size(40.dp)
+                                .clip(RoundedCornerShape(10.dp))
+                                .background(WarningColor.copy(alpha = 0.15f)),
                             contentAlignment = Alignment.Center
                         ) {
-                            Icon(
-                                imageVector = Icons.Default.Person,
-                                contentDescription = null,
-                                tint = Emerald600,
-                                modifier = Modifier.size(32.dp)
-                            )
+                            Text("💰", fontSize = 18.sp)
                         }
 
-                        Spacer(modifier = Modifier.width(16.dp))
+                        Spacer(modifier = Modifier.width(12.dp))
 
-                        Column {
+                        Column(modifier = Modifier.weight(1f)) {
                             Text(
-                                text = "Budi Hartono",
-                                fontSize = 16.sp,
+                                text = "Struktur & Model Bisnis PROTECT",
+                                fontSize = 13.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = DarkSlate900
                             )
-                            Spacer(modifier = Modifier.height(2.dp))
-                            Surface(
-                                color = Emerald50,
-                                shape = RoundedCornerShape(8.dp)
-                            ) {
-                                Text(
-                                    text = "Facility & QA Manager",
-                                    fontSize = 10.sp,
-                                    fontWeight = FontWeight.Bold,
-                                    color = Emerald700,
-                                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp)
-                                )
-                            }
-                            Spacer(modifier = Modifier.height(2.dp))
                             Text(
-                                text = "PT. Boga Lestari Prima",
-                                fontSize = 12.sp,
+                                text = "B2C Transaksional (Per-Booking) & B2B SaaS + Hardware Subscription.",
+                                fontSize = 11.sp,
                                 color = TextSecondary
                             )
                         }
+
+                        Icon(
+                            imageVector = Icons.Default.ChevronRight,
+                            contentDescription = null,
+                            tint = TextMuted
+                        )
                     }
                 }
             }
 
             // Menu Settings List Card
             item {
+                SectionHeader(title = "Pengaturan Akun & Keamanan")
+                Spacer(modifier = Modifier.height(6.dp))
+
                 Card(
                     shape = RoundedCornerShape(16.dp),
                     colors = CardDefaults.cardColors(containerColor = SurfaceLight),
@@ -134,7 +255,7 @@ fun ProfileScreen(
                     Column {
                         ProfileMenuItem(
                             icon = Icons.Outlined.Person,
-                            title = "Edit Profil & Alamat Pabrik",
+                            title = "Edit Profil & Alamat Operasional",
                             onClick = {}
                         )
                         HorizontalDivider()
@@ -146,13 +267,13 @@ fun ProfileScreen(
                         HorizontalDivider()
                         ProfileMenuItem(
                             icon = Icons.Outlined.Security,
-                            title = "Data Privacy & TLS Edge Security",
+                            title = "Data Privacy & TLS Edge Encryption",
                             onClick = {}
                         )
                         HorizontalDivider()
                         ProfileMenuItem(
                             icon = Icons.Outlined.SupportAgent,
-                            title = "Help Center & CS WhatsApp Direct",
+                            title = "Customer Support & Konsultasi 24/7",
                             onClick = onNavigateToChat
                         )
                         HorizontalDivider()
