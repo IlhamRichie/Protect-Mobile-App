@@ -1,0 +1,8 @@
+{
+  "name": "PROTECT",
+  "description": "ProViewAI & Pest Control Companion - AI vision pest monitoring, booking, real-time tracker, digital warranty, and technician field operations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

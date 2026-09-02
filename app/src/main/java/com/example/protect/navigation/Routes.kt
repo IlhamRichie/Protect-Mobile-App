@@ -1,0 +1,31 @@
+package com.example.protect.navigation
+
+object Routes {
+    const val SPLASH = "splash"
+    const val ONBOARDING = "onboarding"
+    const val MAIN = "main"
+    const val BOOKING = "booking"
+    const val PAYMENT = "payment"
+    const val LIVE_TRACKER = "live_tracker"
+    const val DIGITAL_WARRANTY = "digital_warranty"
+    const val CS_CHAT = "cs_chat"
+    const val LIVE_FEED = "live_feed"
+    const val ARTICLES = "articles"
+    const val PROFILE = "profile"
+    const val INCIDENT_DETAIL = "incident_detail/{incidentId}"
+    const val RESOLVE_TICKET = "resolve_ticket/{incidentId}"
+    const val EXPORT_HACCP = "export_haccp"
+    const val CAMERA_MANAGEMENT = "camera_management"
+    const val ROI_EDITOR = "roi_editor"
+    const val ALERT_SETTINGS = "alert_settings"
+    const val ESG_METRICS = "esg_metrics"
+    const val TECH_JOB_BOARD = "tech_job_board"
+    const val TECH_JOB_DETAIL = "tech_job_detail/{jobId}"
+    const val TECH_SOP = "tech_sop"
+    const val TECH_CHEMICAL_LOG = "tech_chemical_log"
+    const val TECH_SIGNOFF = "tech_signoff"
+
+    fun incidentDetail(id: String) = "incident_detail/$id"
+    fun resolveTicket(id: String) = "resolve_ticket/$id"
+    fun techJobDetail(id: String) = "tech_job_detail/$id"
+}

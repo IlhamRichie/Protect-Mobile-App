@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:media_kit/media_kit.dart';
-import 'app/routes/app_pages.dart';
 import 'theme/app_theme.dart';
+import 'screens/splash_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  MediaKit.ensureInitialized();
-  
   runApp(const ProtectApp());
 }
 
@@ -16,12 +12,11 @@ class ProtectApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: 'PROTECT Mobile',
-      theme: AppTheme.lightTheme,
-      initialRoute: AppPages.INITIAL,
-      getPages: AppPages.routes,
+    return MaterialApp(
+      title: 'PROTECT Pest Control & AI HACCP Platform',
       debugShowCheckedModeBanner: false,
+      theme: AppTheme.lightTheme,
+      home: const SplashScreen(),
     );
   }
 }

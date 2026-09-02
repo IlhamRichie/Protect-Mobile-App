@@ -1,80 +1,31 @@
-# PROTECT Mobile 📱 
+# PROTECT - ProViewAI & Pest Intelligence Companion 📱
 
-> Autonomous AI Pest Intelligence in your pocket. Real-time E-Tilang alerts, live CCTV monitoring, and HACCP compliance audits for Enterprise Supply Chains.
+> Autonomous AI Pest Intelligence in your pocket. Real-time E-Tilang alerts, live CCTV monitoring, and HACCP compliance audits for Enterprise Supply Chains and Residential pest control.
 
-[![Version](https://img.shields.io/badge/version-1.0.0--beta-blue.svg)]()
-[![Platform](https://img.shields.io/badge/platform-iOS%20%7C%20Android-lightgrey.svg)]()
-[![License: MIT](https://img.shields.io/badge/License-Proprietary-red.svg)]()
+[![Version](https://img.shields.io/badge/version-1.2.0-blue.svg)]()
+[![Platform](https://img.shields.io/badge/platform-Android%20%7C%20Jetpack%20Compose-green.svg)]()
+[![Language](https://img.shields.io/badge/language-Kotlin-purple.svg)]()
 
-PROTECT Mobile is the companion application for the **ProViewAI Engine**, designed specifically for Facility Managers and Pest Control Operators (PCOs). It brings sub-second incident alerts, spatial ingress mapping, and automated audit logs directly to your mobile device.
+PROTECT is built for Facility Managers, QA Leads, and Field Pest Control Operators (PCOs). It brings sub-second incident alerts, spatial ingress mapping, interactive GPS technician tracking, 12-month digital warranty certificates, and automated HACCP audit logs.
 
 ## ✨ Core Features
 
-- **🚨 Real-Time E-Tilang Alerts:** Receive instant push notifications (< 800ms latency) the moment a perimeter breach is detected by the Edge AI.
-- **🎥 Live CCTV Gateway:** Securely access live ONVIF/RTSP streams of your facility's restricted zones directly from your phone.
-- **🗺️ Hotspot Heatmaps:** Visualize historical detection data to identify exact pest entry points and structural vulnerabilities.
-- **📑 Digital HACCP Audits:** Log corrective actions, upload photo evidence, and export compliance reports with a single tap.
-- **🔐 Enterprise Security:** TLS 1.3 End-to-End Encryption with biometric authentication (FaceID/TouchID) to ensure total data privacy.
+- **🚨 AI Intrusion Breach Alerts:** Instant notifications with YOLO-Pest vision telemetry, species classification, and confidence scoring.
+- **🎥 Live RTSP CCTV Gateway:** Live stream viewport with bounding box & boundary intrusion crossline canvas overlay.
+- **📍 Live GPS Technician Tracker:** Real-time canvas route mapping showing technician location en route, ETA, and instant contact.
+- **🛡️ 12-Month Digital Warranty (E-Garansi):** Digital certification with cryptographic SHA-256 verification hash and 1-tap re-treatment claims.
+- **📊 HACCP & ESG Compliance:** Automated export of audit reports (PDF/Excel/CSV) and quantitative ESG chemical reduction scorecards.
+- **🔧 Field Technician Operations:** APD safety checklist, SOP enforcement, chemical dosage logs, and interactive client e-sign canvas.
+- **💬 Customer Support AI Chat:** 24/7 intelligent assistance with instant inquiry routing and service scheduling.
 
 ## 🛠️ Tech Stack
 
-- **Framework:** React Native / Expo *(Ganti dengan Flutter jika pakai Flutter)*
-- **State Management:** Zustand / Redux Toolkit
-- **Networking:** Axios + React Query (REST API) & WebSockets for Live Alerts
-- **Maps/Spatial:** React Native Maps
-- **CI/CD:** Fastlane & GitHub Actions
-
-## 🚀 Getting Started
-
-### Prerequisites
-- Node.js >= 18.x
-- iOS Simulator (Xcode) or Android Studio
-- Active API Key from PROTECT ProViewAI Backend
-
-### Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-org/protect-mobile.git
-   cd protect-mobile
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   # or
-   yarn install
-   ```
-
-3. Setup environment variables:
-   ```bash
-   cp .env.example .env
-   # Add your PROTECT_API_KEY and WS_ENDPOINT
-   ```
-
-4. Run the app:
-   ```bash
-   npx expo start
-   ```
-
-## 📂 Project Structure
-
-```
-protect-mobile/
-├── src/
-│   ├── api/            # API clients and WebSocket integrations
-│   ├── assets/         # Images, fonts, and icons
-│   ├── components/     # Reusable UI components (Buttons, Cards, Alerts)
-│   ├── navigation/     # React Navigation stacks and tabs
-│   ├── screens/        # Main app screens (Dashboard, Alerts, LiveFeed, Profile)
-│   ├── store/          # Global state management
-│   └── utils/          # Helper functions and constants
-├── App.tsx             # Application entry point
-└── app.json            # Expo/React Native configuration
-```
-
-## 🤝 Contributing
-Access to this repository is restricted to authorized PROTECT engineering personnel only. For access requests, please contact `protectpestsolution@gmail.com`.
+- **Target OS:** Android 8.0+ (API 26+)
+- **UI Framework:** Jetpack Compose (Material Design 3)
+- **Language:** Kotlin 2.0+
+- **Architecture:** Clean Architecture + MVVM (StateFlow / ViewModel)
+- **Build System:** Gradle Kotlin DSL with Version Catalog (`libs.versions.toml`)
+- **Navigation:** Jetpack Navigation Compose
 
 ## 📄 License
-© 2026 PROTECT Indonesia. All Rights Reserved. Proprietary and confidential.
+© 2026 PROTECT Indonesia. All Rights Reserved.
